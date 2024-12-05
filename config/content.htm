@@ -46,8 +46,39 @@
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/KCzCwHJkF1E" width="560"></iframe></p>
 <p>題目三</p>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/-EFXZKoewZc" width="560"></iframe></p>
-<h3> w13_hw</h3>
-<h1>HW 2</h1>
+<h3>w13_hw</h3>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<div id="brython_div1"></div>
+<p>
+<script type="text/python">
+from browser import html
+from browser import document as doc
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+ctx = canvas.getContext("2d")
+
+ctx.lineWidth = 1
+ctx.strokeStyle = 'blue'  
+ctx.beginPath()
+ctx.moveTo(10, 10)
+ctx.lineTo(210, 210)
+ctx.stroke()
+</script>
+</p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
 <hr/>

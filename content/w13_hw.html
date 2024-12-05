@@ -142,7 +142,38 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">w10 << <a href='w10.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w13_hw</h1>
-<br />w10 << <a href='w10.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="./../cmsimde/static/brython.js"></script>
+<script src="./../cmsimde/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<div id="brython_div1"></div>
+<p>
+<script type="text/python">
+from browser import html
+from browser import document as doc
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+ctx = canvas.getContext("2d")
+
+ctx.lineWidth = 1
+ctx.strokeStyle = 'blue'  
+ctx.beginPath()
+ctx.moveTo(10, 10)
+ctx.lineTo(210, 210)
+ctx.stroke()
+</script>
+</p><br />w10 << <a href='w10.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
     <!-- footer -->
       <div class="container">
