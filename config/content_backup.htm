@@ -47,7 +47,106 @@
 <p>題目三</p>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/-EFXZKoewZc" width="560"></iframe></p>
 <h3>w14</h3>
-<p></p><h3>w13_hw</h3>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import random
+import math
+
+# 定義一個函式來初始化畫布
+def initialize_canvas(canvas_width=400, canvas_height=400, id="brython_div1"):
+    """
+    初始化畫布，創建一個指定大小的 Canvas 元素，並將其加到 HTML 文件中。
+    返回畫布元素和它的 2D 繪圖上下文。
+    """
+    # 創建一個 canvas 元素，並設置其寬度與高度
+    canvas = html.CANVAS(width=canvas_width, height=canvas_height)
+    # 將創建的 canvas 元素添加到指定的 HTML div 元素中
+    brython_div = doc[id]  # 獲取指定 id 的 div 元素
+    brython_div &lt;= canvas  # 將 canvas 插入到該 div 中
+     
+    # 獲取 canvas 的 2D 繪圖上下文，這是進行繪圖的主要接口
+    ctx = canvas.getContext("2d")
+     
+    # 返回畫布和它的 2D 繪圖上下文
+    return canvas, ctx
+
+# 定義一個隨機顏色生成函式
+def random_color_generator():
+    """
+    生成一個隨機的 RGB 顏色字符串。
+    返回的顏色是 "rgb(r, g, b)" 格式，其中 r, g, b 是 0 到 255 之間的隨機整數。
+    """
+    r = random.randint(0, 255)  # 隨機生成紅色成分 (0-255)
+    g = random.randint(0, 255)  # 隨機生成綠色成分 (0-255)
+    b = random.randint(0, 255)  # 隨機生成藍色成分 (0-255)
+    return f"rgb({r}, {g}, {b})"  # 返回隨機顏色字符串
+
+# 判斷點 (px, py) 是否在圓內
+def is_point_in_circle(px, py, cx, cy, r):
+    """
+    判斷一個點 (px, py) 是否位於圓 (cx, cy, r) 內。
+    (cx, cy) 為圓心坐標，r 為圓的半徑。
+    """
+    # 使用圓的方程 (px - cx)² + (py - cy)² &lt;= r² 判斷點是否在圓內
+    return (px - cx) ** 2 + (py - cy) ** 2 &lt;= r ** 2
+
+# 使用者設定的圓心座標和半徑，並進行掃描線填充
+def draw_random_circles(num_circles):
+    """
+    根據隨機生成的圓心和半徑，繪製圓形並使用掃描線算法填充區域。
+    num_circles 是要生成的圓的數量
+    """
+    # 初始化畫布，創建並取得畫布和其 2D 上下文
+    canvas, ctx = initialize_canvas(400, 400)
+     
+    # 清空畫布，以便重新繪製
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+     
+    # 隨機生成圓的屬性 (圓心座標和半徑)
+    circles = []
+    for _ in range(num_circles):
+        # 隨機生成圓心 (cx, cy) 和半徑 r
+        cx = random.randint(50, canvas.width - 50)
+        cy = random.randint(50, canvas.height - 50)
+        r = random.randint(30, 80)  # 隨機半徑
+        circles.append((cx, cy, r))
+     
+    # 顏色區域存儲字典，存儲不同區域的顏色
+    color_dict = {}
+ 
+    # 使用掃描線方法填充區域，逐行掃描畫布上的每個像素
+    for py in range(0, canvas.height):  # 遍歷每一行的 y 坐標
+        # 當前掃描線的顏色初始化為 None，後面會根據位置選擇顏色
+        current_color = None
+         
+        # 遍歷當前行中的每個像素點 (px, py)
+        for px in range(0, canvas.width):  # 遍歷每一列的 x 坐標
+            colors_in_region = []
+
+            # 判斷該點是否在每個圓內，記錄在哪些圓內
+            for i, (cx, cy, r) in enumerate(circles):
+                if is_point_in_circle(px, py, cx, cy, r):
+                    colors_in_region.append(i)
+            
+            # 根據圓的交集區域填色
+            if colors_in_region:
+                # 根據圓的交集區域分配顏色
+                region_key = "intersection_" + "_".join(map(str, sorted(colors_in_region)))
+                if region_key not in color_dict:
+                    color_dict[region_key] = random_color_generator()
+                current_color = color_dict[region_key]
+            else:
+                # 如果點不在任何圓內，則是背景區域
+                current_color = "white"  # 背景色設為白色
+ 
+            # 設置當前像素的顏色並進行填充
+            ctx.fillStyle = current_color
+            # 填充當前像素 (px, py)，並且寬度和高度均為 1 像素
+            ctx.fillRect(px, py, 1, 1)  # 填充一個像素
+
+# 呼叫函式，繪製隨機數量的圓
+draw_random_circles(num_circles=5)  # 例如隨機生成5個圓</pre>
+<p><br/><br/></p><h3>w13_hw</h3>
 <p></p>
 <p></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
