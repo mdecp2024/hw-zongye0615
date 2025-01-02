@@ -338,6 +338,24 @@ result = add_only_even(1, 100)
 
 # 输出结果
 print(result)</pre>
+<p><a href="https://mdecp2024.github.io/hw-zongye0615/content/Brython.html?src=https://gist.githubusercontent.com/zongye0615/ce838db676fe984831164911f2481d6b/raw/f34af37f0330dc60289f357c770501efba0ac313/EX_4">add_avoid_8</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定义 add_avoid_8 函式，接受两个参数 start 和 end
+def add_avoid_8(start, end):
+    total_sum = 0  # 初始化总和为 0
+    
+    # 遍历从 start 到 end 之间的所有数字
+    for i in range(start, end + 1):
+        # 将数字转换为字符串并检查是否包含 '8'
+        if '8' not in str(i):
+            total_sum += i  # 如果不包含 '8'，将其加到总和
+    
+    return total_sum  # 返回最终的累加和
+
+# 调用 add_avoid_8 函式，计算从 1 到 100 之间不包含数字 '8' 的数字总和
+result = add_avoid_8(1, 100)
+
+# 输出结果
+print(result)</pre>
 <p></p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
@@ -349,7 +367,8 @@ print(result)</pre>
 <h2>HW 2 Exam</h2>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 2 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
-<h1>HW 3</h1>
+<p></p>
+<h3><span>w16_exam1</span></h3><h1>HW 3</h1>
 <h4>主題: Python 的數字、演算法與迴圈 (20%)</h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 4 and Part 5</p>
 <p>完成上述流程整理後, 請將 HW3 自評分數輸入 cp2024 自評表單中.</p>
